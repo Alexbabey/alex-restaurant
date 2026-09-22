@@ -1,0 +1,626 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Alex Restaurant | Taste Without Limits</title>
+
+<meta
+    name="description"
+    content="Alex Restaurant — pizza, burgers, Ethiopian cuisine, pasta, desserts and more."
+>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+<link rel="stylesheet" href="style.css">
+
+</head><body><!-- ================= NAVBAR ================= --><header class="navbar"><a href="#" class="logo">
+    <span class="logo-mark">A</span>
+    <span>Alex<span class="gold">Restaurant</span></span>
+</a>
+
+<nav id="navMenu">
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#about">About</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<div class="nav-actions">
+
+    <button class="cart-button" onclick="openCart()">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span>Cart</span>
+        <b id="cartCount">0</b>
+    </button>
+
+    <button class="menu-toggle" onclick="toggleMenu()">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+</div>
+
+</header><!-- ================= HERO ================= --><section class="hero" id="home"><div class="hero-overlay"></div>
+
+<div class="hero-content">
+
+    <span class="eyebrow">
+        <i class="fa-solid fa-star"></i>
+        Welcome to Alex Restaurant
+    </span>
+
+    <h1>
+        Taste the world.
+        <span>One plate at a time.</span>
+    </h1>
+
+    <p>
+        From Italian pizza to Ethiopian classics,
+        discover food made with passion, quality and unforgettable flavor.
+    </p>
+
+    <div class="hero-buttons">
+
+        <a href="#menu" class="btn btn-primary">
+            Explore Menu
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+        <a href="#reservation" class="btn btn-outline">
+            Reserve a Table
+        </a>
+
+    </div>
+
+    <div class="hero-info">
+
+        <div>
+            <i class="fa-solid fa-clock"></i>
+            <span>
+                <small>Open today</small>
+                10:00 AM – 11:00 PM
+            </span>
+        </div>
+
+        <div>
+            <i class="fa-solid fa-location-dot"></i>
+            <span>
+                <small>Visit us</small>
+                Your City
+            </span>
+        </div>
+
+    </div>
+
+</div>
+
+</section><!-- ================= SPECIAL OFFER ================= --><section class="offer"><div>
+
+    <span class="offer-tag">
+        TODAY'S SPECIAL
+    </span>
+
+    <h2>
+        Family Feast
+    </h2>
+
+    <p>
+        Large pizza + 2 burgers + fries + 4 drinks
+    </p>
+
+</div>
+
+<div class="offer-price">
+    <span>Only</span>
+    <strong>$39.99</strong>
+</div>
+
+<button
+    class="btn btn-light"
+    onclick="addSpecialOffer()"
+>
+    Order Now
+</button>
+
+</section><!-- ================= CATEGORIES ================= --><section class="categories"><div class="section-heading centered">
+
+    <span class="eyebrow dark">
+        WHAT ARE YOU CRAVING?
+    </span>
+
+    <h2>
+        Explore Our Menu
+    </h2>
+
+    <p>
+        Something delicious for every mood.
+    </p>
+
+</div>
+
+<div class="category-grid">
+
+    <button onclick="filterMenu('all')" class="category active">
+        <span>🍽️</span>
+        <strong>All</strong>
+    </button>
+
+    <button onclick="filterMenu('pizza')" class="category">
+        <span>🍕</span>
+        <strong>Pizza</strong>
+    </button>
+
+    <button onclick="filterMenu('burger')" class="category">
+        <span>🍔</span>
+        <strong>Burgers</strong>
+    </button>
+
+    <button onclick="filterMenu('ethiopian')" class="category">
+        <span>🇪🇹</span>
+        <strong>Ethiopian</strong>
+    </button>
+
+    <button onclick="filterMenu('pasta')" class="category">
+        <span>🍝</span>
+        <strong>Pasta</strong>
+    </button>
+
+    <button onclick="filterMenu('chicken')" class="category">
+        <span>🍗</span>
+        <strong>Chicken</strong>
+    </button>
+
+    <button onclick="filterMenu('dessert')" class="category">
+        <span>🍰</span>
+        <strong>Desserts</strong>
+    </button>
+
+    <button onclick="filterMenu('drinks')" class="category">
+        <span>🥤</span>
+        <strong>Drinks</strong>
+    </button>
+
+</div>
+
+</section><!-- ================= MENU ================= --><section class="menu-section" id="menu"><div class="menu-top">
+
+    <div class="section-heading">
+
+        <span class="eyebrow dark">
+            OUR MENU
+        </span>
+
+        <h2>
+            Made to make you hungry.
+        </h2>
+
+        <p>
+            Fresh ingredients. Big flavors. Zero boring food.
+        </p>
+
+    </div>
+
+    <div class="search-box">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search food..."
+            oninput="searchFood()"
+        >
+
+    </div>
+
+</div>
+
+<div id="foodGrid" class="food-grid"></div>
+
+</section><!-- ================= ABOUT ================= --><section class="about" id="about"><div class="about-image">
+
+    <img
+        src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=85"
+        alt="Traditional food"
+    >
+
+    <div class="experience-card">
+        <strong>10+</strong>
+        <span>Years of<br>passion</span>
+    </div>
+
+</div>
+
+<div class="about-content">
+
+    <span class="eyebrow dark">
+        OUR STORY
+    </span>
+
+    <h2>
+        More than food.
+        <span>It's an experience.</span>
+    </h2>
+
+    <p>
+        Alex Restaurant was created around one simple idea:
+        great food brings people together.
+    </p>
+
+    <p>
+        Our menu brings together international favorites and
+        Ethiopian flavors, prepared with fresh ingredients and
+        served with genuine hospitality.
+    </p>
+
+    <div class="about-features">
+
+        <div>
+            <i class="fa-solid fa-leaf"></i>
+            <span>Fresh Ingredients</span>
+        </div>
+
+        <div>
+            <i class="fa-solid fa-fire"></i>
+            <span>Made Fresh</span>
+        </div>
+
+        <div>
+            <i class="fa-solid fa-heart"></i>
+            <span>Made With Love</span>
+        </div>
+
+    </div>
+
+</div>
+
+</section><!-- ================= FEATURED ================= --><section class="featured"><div class="section-heading centered">
+
+    <span class="eyebrow dark">
+        CUSTOMER FAVORITES
+    </span>
+
+    <h2>
+        The dishes everyone talks about.
+    </h2>
+
+</div>
+
+<div class="featured-grid">
+
+    <article class="featured-card large">
+
+        <img
+            src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=1200&q=85"
+            alt="Pizza"
+        >
+
+        <div>
+            <span>BEST SELLER</span>
+            <h3>Signature Pizza</h3>
+            <p>Fresh mozzarella, tomato, basil & our secret sauce.</p>
+        </div>
+
+    </article>
+
+    <article class="featured-card">
+
+        <img
+            src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85"
+            alt="Burger"
+        >
+
+        <div>
+            <span>POPULAR</span>
+            <h3>Alex Burger</h3>
+            <p>Juicy beef, cheese, lettuce & signature sauce.</p>
+        </div>
+
+    </article>
+
+    <article class="featured-card">
+
+        <img
+            src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85"
+            alt="Ethiopian inspired food"
+        >
+
+        <div>
+            <span>ETHIOPIAN</span>
+            <h3>Traditional Feast</h3>
+            <p>Rich spices, vegetables and traditional flavors.</p>
+        </div>
+
+    </article>
+
+</div>
+
+</section><!-- ================= REVIEWS ================= --><section class="reviews" id="reviews"><div class="section-heading centered">
+
+    <span class="eyebrow">
+        GUEST EXPERIENCES
+    </span>
+
+    <h2>
+        Loved by our guests.
+    </h2>
+
+</div>
+
+<div class="review-grid">
+
+    <article class="review-card">
+
+        <div class="stars">★★★★★</div>
+
+        <p>
+            “The pizza was incredible. Fresh, hot and full of flavor.
+            Definitely coming back.”
+        </p>
+
+        <div class="review-user">
+            <div class="avatar">M</div>
+            <div>
+                <strong>Michael</strong>
+                <small>Verified Guest</small>
+            </div>
+        </div>
+
+    </article>
+
+    <article class="review-card">
+
+        <div class="stars">★★★★★</div>
+
+        <p>
+            “The Ethiopian food was amazing. The spices and presentation
+            were excellent.”
+        </p>
+
+        <div class="review-user">
+            <div class="avatar">S</div>
+            <div>
+                <strong>Sarah</strong>
+                <small>Verified Guest</small>
+            </div>
+        </div>
+
+    </article>
+
+    <article class="review-card">
+
+        <div class="stars">★★★★★</div>
+
+        <p>
+            “Beautiful restaurant, friendly service and delicious food.
+            The burger is fantastic!”
+        </p>
+
+        <div class="review-user">
+            <div class="avatar">D</div>
+            <div>
+                <strong>Daniel</strong>
+                <small>Verified Guest</small>
+            </div>
+        </div>
+
+    </article>
+
+</div>
+
+</section><!-- ================= RESERVATION ================= --><section class="reservation" id="reservation"><div class="reservation-content">
+
+    <span class="eyebrow">
+        YOUR TABLE IS WAITING
+    </span>
+
+    <h2>
+        Make tonight
+        <span>delicious.</span>
+    </h2>
+
+    <p>
+        Reserve your table and enjoy an unforgettable meal
+        at Alex Restaurant.
+    </p>
+
+</div>
+
+<form
+    class="reservation-form"
+    onsubmit="reserveTable(event)"
+>
+
+    <input
+        type="text"
+        id="reservationName"
+        placeholder="Your name"
+        required
+    >
+
+    <input
+        type="date"
+        id="reservationDate"
+        required
+    >
+
+    <select id="reservationGuests">
+
+        <option value="2">2 Guests</option>
+        <option value="3">3 Guests</option>
+        <option value="4">4 Guests</option>
+        <option value="5">5 Guests</option>
+        <option value="6">6+ Guests</option>
+
+    </select>
+
+    <button class="btn btn-primary">
+        Reserve Table
+    </button>
+
+</form>
+
+</section><!-- ================= CONTACT ================= --><section class="contact" id="contact"><div class="contact-card">
+
+    <span class="eyebrow dark">
+        COME VISIT US
+    </span>
+
+    <h2>
+        Let's eat.
+    </h2>
+
+    <div class="contact-details">
+
+        <div>
+            <i class="fa-solid fa-location-dot"></i>
+            <span>
+                <strong>Location</strong>
+                <small>Your City, Your Country</small>
+            </span>
+        </div>
+
+        <div>
+            <i class="fa-solid fa-phone"></i>
+            <span>
+                <strong>Phone</strong>
+                <small>+000 000 000 000</small>
+            </span>
+        </div>
+
+        <div>
+            <i class="fa-solid fa-clock"></i>
+            <span>
+                <strong>Opening Hours</strong>
+                <small>Every day · 10 AM – 11 PM</small>
+            </span>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="map-placeholder">
+
+    <i class="fa-solid fa-location-dot"></i>
+
+    <h3>
+        Alex Restaurant
+    </h3>
+
+    <p>
+        Your location will appear here.
+    </p>
+
+</div>
+
+</section><!-- ================= FOOTER ================= --><footer><div class="footer-main">
+
+    <div>
+
+        <a href="#" class="logo">
+            <span class="logo-mark">A</span>
+            <span>Alex<span class="gold">Restaurant</span></span>
+        </a>
+
+        <p>
+            Great food. Great people.
+            Great memories.
+        </p>
+
+    </div>
+
+    <div>
+
+        <h4>Explore</h4>
+
+        <a href="#menu">Menu</a>
+        <a href="#about">Our Story</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#reservation">Reservations</a>
+
+    </div>
+
+    <div>
+
+        <h4>Follow Us</h4>
+
+        <div class="socials">
+
+            <a href="#">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a href="#">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+
+            <a href="#">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="footer-bottom">
+
+    <span>
+        © 2026 Alex Restaurant. All rights reserved.
+    </span>
+
+    <span>
+        Crafted with passion.
+    </span>
+
+</div>
+
+</footer><!-- ================= CART ================= --><div id="cartOverlay" class="cart-overlay" onclick="closeCart(event)"><aside class="cart">
+
+    <div class="cart-header">
+
+        <h2>Your Order</h2>
+
+        <button onclick="closeCart()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+    </div>
+
+    <div id="cartItems" class="cart-items"></div>
+
+    <div class="cart-footer">
+
+        <div class="total-row">
+            <span>Total</span>
+            <strong id="cartTotal">$0.00</strong>
+        </div>
+
+        <button
+            class="btn btn-primary checkout"
+            onclick="checkout()"
+        >
+            Continue to Checkout
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+    </div>
+
+</aside>
+
+</div><div id="toast" class="toast">
+    Added to your order!
+</div><script src="script.js"></script></body>
+</html>
